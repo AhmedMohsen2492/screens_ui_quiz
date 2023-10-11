@@ -103,7 +103,7 @@ class _MoodyScreenState extends State<MoodyScreen> {
           icon: Column(
             children: [
               Icon(
-                Icons.shopping_bag_outlined,
+                Icons.calendar_today_outlined,
               ),
             ],
           ),

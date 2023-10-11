@@ -19,7 +19,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   int currentIndex = 0;
 
   List<Widget> body = [
-    WorkoutHomeTab(),
+    const WorkoutHomeTab(),
     const WorkoutShareTab(),
     const WorkoutCharTab(),
     const WorkoutAccountTab()

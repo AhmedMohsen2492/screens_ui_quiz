@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/ui/screens/Moody/moody_screen.dart';
+import 'package:quiz/ui/screens/news/news_screen.dart';
 import 'package:quiz/ui/screens/workout/workout_screen.dart';
 
 void main() {
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: WorkoutScreen.routeName,
+      initialRoute: NewsScreen.routeName,
       routes: {
-        MoodyScreen.routeName : (_) => MoodyScreen(),
-        WorkoutScreen.routeName : (_) => WorkoutScreen(),
+        MoodyScreen.routeName : (_) => const MoodyScreen(),
+        WorkoutScreen.routeName : (_) => const WorkoutScreen(),
+        NewsScreen.routeName : (_) => const NewsScreen(),
       },
     );
   }

@@ -19,7 +19,8 @@ class Programs extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.only(top: 20, bottom: 20, left: 10),
         decoration: BoxDecoration(
-            color: AppColors.l_grey, borderRadius: BorderRadius.circular(16)),
+            color: AppColors.l_grey,
+            borderRadius: BorderRadius.circular(16)),
         child: Row(
           children: [
             Column(
