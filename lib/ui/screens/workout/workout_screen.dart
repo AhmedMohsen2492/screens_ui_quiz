@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/ui/screens/Moody/moody_screen.dart';
+import 'package:quiz/ui/screens/news/news_screen.dart';
 import 'package:quiz/ui/screens/workout/tabs/account/workout_account_tab.dart';
 import 'package:quiz/ui/screens/workout/tabs/char/workout_char_tab.dart';
 import 'package:quiz/ui/screens/workout/tabs/home/workout_home_tab.dart';
@@ -33,6 +35,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: Colors.black,
+          ),
           elevation: 0,
           backgroundColor: AppColors.white,
           title: Row(
@@ -84,6 +89,32 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         ),
         body: body[currentIndex],
         bottomNavigationBar: buildBottomNavBar(),
+        drawer: Container(
+          color: Colors.lightGreen,
+          width: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: ()
+                {
+                  Navigator.pushReplacementNamed(context, MoodyScreen.routeName);
+                },
+                child: const Text("moody"),
+              ),
+              ElevatedButton(
+                onPressed: (){},
+                child: const Text("workout"),
+              ),
+              ElevatedButton(
+                onPressed: (){
+                  Navigator.pushReplacementNamed(context, NewsScreen.routeName);
+                },
+                child: const Text("news"),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

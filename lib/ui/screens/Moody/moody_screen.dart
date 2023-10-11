@@ -3,6 +3,8 @@ import 'package:quiz/ui/screens/Moody/tabs/account/moody_account_tab.dart';
 import 'package:quiz/ui/screens/Moody/tabs/home/moody_home_tab.dart';
 import 'package:quiz/ui/screens/Moody/tabs/menu/moody_menu_tab.dart';
 import 'package:quiz/ui/screens/Moody/tabs/shop/moody_shop_tab.dart';
+import 'package:quiz/ui/screens/news/news_screen.dart';
+import 'package:quiz/ui/screens/workout/workout_screen.dart';
 import 'package:quiz/ulits/app_assets.dart';
 import 'package:quiz/ulits/app_colors.dart';
 
@@ -30,6 +32,9 @@ class _MoodyScreenState extends State<MoodyScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
         elevation: 0,
         backgroundColor: AppColors.white,
         title: Row(
@@ -65,6 +70,31 @@ class _MoodyScreenState extends State<MoodyScreen> {
       ),
       body: body[currentIndex],
       bottomNavigationBar: buildBottomNavBar(),
+      drawer: Container(
+        color: Colors.lightGreen,
+        width: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: (){},
+                child: const Text("moody"),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.pushReplacementNamed(context, WorkoutScreen.routeName);
+              },
+              child: const Text("workout"),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.pushReplacementNamed(context, NewsScreen.routeName);
+              },
+              child: const Text("news"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
