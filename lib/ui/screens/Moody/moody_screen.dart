@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/ui/my%20provider/my_provider.dart';
 import 'package:quiz/ui/screens/Moody/tabs/account/moody_account_tab.dart';
 import 'package:quiz/ui/screens/Moody/tabs/home/moody_home_tab.dart';
 import 'package:quiz/ui/screens/Moody/tabs/menu/moody_menu_tab.dart';
@@ -18,8 +20,8 @@ class MoodyScreen extends StatefulWidget {
 }
 
 class _MoodyScreenState extends State<MoodyScreen> {
-  int currentIndex = 0;
 
+  late MyProvider provider;
   List<Widget> body = [
     const MoodyHomeTab(),
     const MoodyMenuTab(),
@@ -29,6 +31,7 @@ class _MoodyScreenState extends State<MoodyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -68,7 +71,7 @@ class _MoodyScreenState extends State<MoodyScreen> {
           ),
         ],
       ),
-      body: body[currentIndex],
+      body: body[provider.MoodyCurrentIndex],
       bottomNavigationBar: buildBottomNavBar(),
       drawer: Container(
         color: Colors.lightGreen,
@@ -100,11 +103,10 @@ class _MoodyScreenState extends State<MoodyScreen> {
 
   Widget buildBottomNavBar() {
     return BottomNavigationBar(
-      onTap: (index) {
-        currentIndex = index;
-        setState(() {});
+      onTap: (index){
+        provider.changeMoodyCurrentIndex(index);
       },
-      currentIndex: currentIndex,
+      currentIndex: provider.MoodyCurrentIndex,
       selectedItemColor: AppColors.green,
       unselectedItemColor: AppColors.move,
       showSelectedLabels: false,

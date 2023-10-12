@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/ui/my%20provider/my_provider.dart';
 import 'package:quiz/ui/screens/Moody/moody_screen.dart';
 import 'package:quiz/ui/screens/news/tabs/chat/news_chat_tab.dart';
 import 'package:quiz/ui/screens/news/tabs/insights/news_insights_tab.dart';
@@ -17,7 +19,7 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  int currentIndex = 1;
+  late MyProvider provider ;
 
   List<Widget> body = [
     const NewsTodayTab(),
@@ -27,6 +29,7 @@ class _NewsScreenState extends State<NewsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -53,7 +56,7 @@ class _NewsScreenState extends State<NewsScreen> {
         ),
         centerTitle: true,
       ),
-      body: body[currentIndex],
+      body: body[provider.NewsCurrentIndex],
       bottomNavigationBar: buildBottomNavBar(),
       drawer: Container(
         color: Colors.lightGreen,
@@ -87,10 +90,9 @@ class _NewsScreenState extends State<NewsScreen> {
   buildBottomNavBar() {
     return BottomNavigationBar(
       onTap: (index) {
-        currentIndex = index;
-        setState(() {});
+       provider.changeNewsCurrentIndex(index);
       },
-      currentIndex: currentIndex,
+      currentIndex: provider.NewsCurrentIndex,
       selectedItemColor: AppColors.purple,
       unselectedItemColor: AppColors.dark_purple,
       showSelectedLabels: true,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/ui/my%20provider/my_provider.dart';
 import 'package:quiz/ui/screens/Moody/moody_screen.dart';
 import 'package:quiz/ui/screens/news/news_screen.dart';
 import 'package:quiz/ui/screens/workout/tabs/account/workout_account_tab.dart';
@@ -18,8 +20,9 @@ class WorkoutScreen extends StatefulWidget {
 }
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
-  int currentIndex = 0;
 
+
+  late MyProvider provider ;
   List<Widget> body = [
     const WorkoutHomeTab(),
     const WorkoutShareTab(),
@@ -29,6 +32,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return DefaultTabController(
       initialIndex: 0,
       length: 4,
@@ -87,7 +91,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             ),
           ],
         ),
-        body: body[currentIndex],
+        body: body[provider.WorkoutCurrentIndex],
         bottomNavigationBar: buildBottomNavBar(),
         drawer: Container(
           color: Colors.lightGreen,
@@ -122,10 +126,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   buildBottomNavBar() {
     return BottomNavigationBar(
       onTap: (index) {
-        currentIndex = index;
-        setState(() {});
+        provider.changeWorkoutCurrentIndex(index);
       },
-      currentIndex: currentIndex,
+      currentIndex: provider.WorkoutCurrentIndex,
       selectedItemColor: AppColors.dark_blue,
       unselectedItemColor: AppColors.move,
       showSelectedLabels: false,

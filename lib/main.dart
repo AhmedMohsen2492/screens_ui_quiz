@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/ui/my%20provider/my_provider.dart';
 import 'package:quiz/ui/screens/Moody/moody_screen.dart';
 import 'package:quiz/ui/screens/news/news_screen.dart';
 import 'package:quiz/ui/screens/workout/workout_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider(
+        create: (_)=>MyProvider(),
+          child: const MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/ui/my%20provider/my_provider.dart';
 import 'package:quiz/ulits/app_assets.dart';
 import 'package:quiz/ulits/app_colors.dart';
 
@@ -10,16 +12,10 @@ class NewsInsightsTab extends StatefulWidget {
 }
 
 class _NewsInsightsTabState extends State<NewsInsightsTab> {
-  bool discoverSelected = false;
-
-  bool newsSelected = false;
-
-  bool mostViewedSelected = false;
-
-  bool savedSelected = false;
-
+  late MyProvider provider ;
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: SingleChildScrollView(
@@ -52,7 +48,7 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(500),
                           side: BorderSide(
-                            color: !discoverSelected
+                            color: !provider.discoverSelected
                                 ? AppColors.greey
                                 : AppColors.d_purple,
                             width: 2,
@@ -61,19 +57,18 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         backgroundColor: AppColors.white,
                         showCheckmark: false,
                         selectedColor: AppColors.l_purple,
-                        selected: discoverSelected,
+                        selected: provider.discoverSelected,
                         label: Text(
                           "Discover",
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
-                              color: !discoverSelected
+                              color: !provider.discoverSelected
                                   ? AppColors.dark_purple
                                   : AppColors.purple),
                         ),
                         onSelected: (value) {
-                          discoverSelected = value;
-                          setState(() {});
+                          provider.changeDiscoverSelectedValue(value);
                         }),
                   ),
                   Padding(
@@ -84,7 +79,7 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(500),
                           side: BorderSide(
-                            color: !newsSelected
+                            color: !provider.newsSelected
                                 ? AppColors.greey
                                 : AppColors.d_purple,
                             width: 2,
@@ -93,19 +88,18 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         backgroundColor: AppColors.white,
                         showCheckmark: false,
                         selectedColor: AppColors.l_purple,
-                        selected: newsSelected,
+                        selected: provider.newsSelected,
                         label: Text(
                           "News",
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
-                              color: !newsSelected
+                              color: !provider.newsSelected
                                   ? AppColors.dark_purple
                                   : AppColors.purple),
                         ),
                         onSelected: (value) {
-                          newsSelected = value;
-                          setState(() {});
+                          provider.changeNewsSelectedValue(value);
                         }),
                   ),
                   Padding(
@@ -116,7 +110,7 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(500),
                           side: BorderSide(
-                            color: !mostViewedSelected
+                            color: !provider.mostViewedSelected
                                 ? AppColors.greey
                                 : AppColors.d_purple,
                             width: 2,
@@ -125,19 +119,18 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                         backgroundColor: AppColors.white,
                         showCheckmark: false,
                         selectedColor: AppColors.l_purple,
-                        selected: mostViewedSelected,
+                        selected: provider.mostViewedSelected,
                         label: Text(
                           "Most Viewed",
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
-                              color: !mostViewedSelected
+                              color: !provider.mostViewedSelected
                                   ? AppColors.dark_purple
                                   : AppColors.purple),
                         ),
                         onSelected: (value) {
-                          mostViewedSelected = value;
-                          setState(() {});
+                          provider.changeMostViewedSelectedValue(value);
                         }),
                   ),
                   FilterChip(
@@ -146,7 +139,7 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(500),
                         side: BorderSide(
-                          color: !savedSelected
+                          color: !provider.savedSelected
                               ? AppColors.greey
                               : AppColors.d_purple,
                           width: 2,
@@ -155,19 +148,18 @@ class _NewsInsightsTabState extends State<NewsInsightsTab> {
                       backgroundColor: AppColors.white,
                       showCheckmark: false,
                       selectedColor: AppColors.l_purple,
-                      selected: savedSelected,
+                      selected: provider.savedSelected,
                       label: Text(
                         "Saved",
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
-                            color: !savedSelected
+                            color: !provider.savedSelected
                                 ? AppColors.dark_purple
                                 : AppColors.purple),
                       ),
                       onSelected: (value) {
-                        savedSelected = value;
-                        setState(() {});
+                        provider.changeSavedSelectedValue(value);
                       }),
                 ],
               ),
